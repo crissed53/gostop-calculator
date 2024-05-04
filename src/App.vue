@@ -49,7 +49,9 @@ const registerMember = () => {
   <div>
     <div v-for="userInfo in userInfos">
       <div class="flex">
-        <div>{{ userInfo.userName }}</div>
+        <div class="h-16 border border-md text-2xl">
+          {{ userInfo.userName }}
+        </div>
         <div class="w-16 h-16 border rounded-md text-2xl text-center">
           {{ userInfo.count }}
         </div>
@@ -70,6 +72,24 @@ const registerMember = () => {
           @click="addVal(userInfo.userName, 10)"
         >
           10+
+        </button>
+        <button
+          class="w-16 h-16 border rounded-md"
+          @click="addVal(userInfo.userName, -1)"
+        >
+          -
+        </button>
+        <button
+          class="w-16 h-16 border rounded-md"
+          @click="addVal(userInfo.userName, -5)"
+        >
+          5-
+        </button>
+        <button
+          class="w-16 h-16 border rounded-md"
+          @click="addVal(userInfo.userName, -10)"
+        >
+          10-
         </button>
         <button
           class="w-16 h-16 border rounded-md"
