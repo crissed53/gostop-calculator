@@ -14,9 +14,15 @@ const { userInfos, addUser, addVal } = useCounterStore();
         </div>
         <button
           class="w-16 h-16 border rounded-md"
-          @click="addVal(userInfo.userName)"
+          @click="addVal(userInfo.userName, 1)"
         >
           +
+        </button>
+        <button
+          class="w-16 h-16 border rounded-md"
+          @click="addVal(userInfo.userName, 10)"
+        >
+          10+
         </button>
       </div>
     </div>

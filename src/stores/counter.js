@@ -7,7 +7,7 @@ export const useCounterStore = defineStore('counter', () => {
   //   {userName: "조찬숙", count: 0},
   //   {userName: "정연우", count: 0},
   // ]);
-  const userInfos = useStorage("userInfos", [
+  const userInfos = ref([
     {userName: "조찬숙", count: 0},
     {userName: "정연우", count: 0},
 
@@ -16,12 +16,12 @@ export const useCounterStore = defineStore('counter', () => {
   const addUser = (userName) => {
     userInfos.value.push({userName: userName, count: 0});
   }
-  const addVal = (userName) => {
+  const addVal = (userName, count) => {
     for (const userInfo of userInfos.value) {
       if (userInfo.userName === userName) {
-        userInfo.count = userInfo.count + 1;
+        userInfo.count = userInfo.count + (userInfos.value.length - 1) * count;
       } else {
-        userInfo.count = userInfo.count - 1;
+        userInfo.count = userInfo.count - count;
       }
     }
   }
