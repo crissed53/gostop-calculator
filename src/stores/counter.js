@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useStorage } from "@vueuse/core"
+import { useLocalStorage } from "@vueuse/core"
 import { ref } from 'vue'
 
 export const useCounterStore = defineStore('counter', () => {
@@ -7,11 +7,12 @@ export const useCounterStore = defineStore('counter', () => {
   //   {userName: "조찬숙", count: 0},
   //   {userName: "정연우", count: 0},
   // ]);
-  const userInfos = ref([
+  const rawUserInfos = [
     {userName: "조찬숙", count: 0},
     {userName: "정연우", count: 0},
 
-  ])
+  ]
+  const userInfos = useLocalStorage("userInfos",])
 
   const addUser = (userName) => {
     userInfos.value.push({userName: userName, count: 0});

@@ -1,7 +1,48 @@
 <script setup>
-import { useCounterStore } from "./stores/counter";
+import { useStorage } from "@vueuse/core";
+import { ref } from "vue";
 
-const { userInfos, addUser, addVal } = useCounterStore();
+// import { useCounterStore } from "./stores/counter";
+
+// const { userInfos, addUser, addVal } = useCounterStore();
+const userInfos = useStorage("userInfos", [
+  { userName: "조찬숙", count: 0 },
+  { userName: "정연우", count: 0 },
+]);
+const addUser = (userName) => {
+  userInfos.value.push({ userName: userName, count: 0 });
+};
+const deleteUser = (userName) => {
+  let index;
+  for (var i = 0; i < userInfos.length; i++) {
+    if (userInfos.value.userName === userName) {
+      index = i;
+      break;
+    }
+  }
+  userInfos.value.splice(index, 1);
+  // let result = [];
+  // for (const userInfo in userInfos.value) {
+  //   if (userInfo.userName !== userName) {
+  //     result.push(userInfo);
+  //   }
+  // }
+  // userInfos.value = result;
+};
+const addVal = (userName, count) => {
+  for (const userInfo of userInfos.value) {
+    if (userInfo.userName === userName) {
+      userInfo.count = userInfo.count + (userInfos.value.length - 1) * count;
+    } else {
+      userInfo.count = userInfo.count - count;
+    }
+  }
+};
+const inputValue = ref("");
+const registerMember = () => {
+  addUser(inputValue.value);
+  inputValue.value = "";
+};
 </script>
 
 <template>
@@ -30,7 +71,27 @@ const { userInfos, addUser, addVal } = useCounterStore();
         >
           10+
         </button>
+        <button
+          class="w-16 h-16 border rounded-md"
+          @click="deleteUser(userInfo.userName)"
+        >
+          X
+        </button>
       </div>
+    </div>
+    <div>
+      <input
+        class="h-8 w-64 border"
+        type="text"
+        placeholder="add member"
+        v-model="inputValue"
+      />
+      <button
+        class="h-16 border rounded-md"
+        @click="registerMember"
+      >
+        AddMember
+      </button>
     </div>
   </div>
 </template>
