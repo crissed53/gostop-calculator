@@ -14,8 +14,8 @@ const addUser = (userName) => {
 };
 const deleteUser = (userName) => {
   let index;
-  for (var i = 0; i < userInfos.length; i++) {
-    if (userInfos.value.userName === userName) {
+  for (let i = 0; i < userInfos.value.length; i++) {
+    if (userInfos.value[i].userName === userName) {
       index = i;
       break;
     }
