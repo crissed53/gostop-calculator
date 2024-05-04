@@ -20,6 +20,12 @@ const { userInfos, addUser, addVal } = useCounterStore();
         </button>
         <button
           class="w-16 h-16 border rounded-md"
+          @click="addVal(userInfo.userName, 5)"
+        >
+          5+
+        </button>
+        <button
+          class="w-16 h-16 border rounded-md"
           @click="addVal(userInfo.userName, 10)"
         >
           10+
